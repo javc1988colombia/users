@@ -19,6 +19,6 @@ class UserRepo
 
     public function store($data)
     {
-        $this->getModel()->create($data);
+        return $this->getModel()->create($data);        
     }    
 }

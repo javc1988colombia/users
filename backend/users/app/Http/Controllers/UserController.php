@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Validator;
 use App\UserRepo;
+use App\Jobs;
 
 class UserController extends Controller
 {
@@ -43,7 +44,8 @@ class UserController extends Controller
             return response()->json(['message' => $validator->errors()], 400);
         }
 
-        $this->getRepo()->store($request->all());
+        $data = $this->getRepo()->store($request->all());      
+
         return response()->json(['message' => "Save successfully"], 200);
     }
 }

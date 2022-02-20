@@ -23,8 +23,7 @@ class UserCreated
      */
     public function __construct($model)
     {
-        //print_r($model);
-        Mail::to("javc2009@gmail.com", "sfddsaf")->send(new WelcomeEmail($model));
+        Mail::to("javc2009@gmail.com")->send(new WelcomeEmail($model));
     }
 
     /**
