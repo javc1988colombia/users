@@ -10,6 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Mail\WelcomeEmail;
+use App\Mail\AdminEmail;
 use Illuminate\Support\Facades\Mail;
 
 class UserCreated
@@ -24,6 +25,7 @@ class UserCreated
     public function __construct($model)
     {
         Mail::to("javc2009@gmail.com")->send(new WelcomeEmail($model));
+        Mail::to("javc2009@gmail.com")->send(new AdminEmail($model));
     }
 
     /**

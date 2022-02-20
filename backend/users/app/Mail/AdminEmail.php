@@ -6,8 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\UserRepo;
 
-class WelcomeEmail extends Mailable
+class AdminEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,11 +31,15 @@ class WelcomeEmail extends Mailable
      */
     public function build()
     {      
-        return $this->view('welcome')
+        $user_repo = new UserRepo();
+
+        $items = $user_repo->getUserByCountry();
+
+        return $this->view('admin')
         ->from('javc2009@gmail.com', 'Jonathan Velez')
         ->subject('Welcome')
         ->with([
-          'inputs' => $this->inputs,
+          'items' => $items
         ]);
     }
 }

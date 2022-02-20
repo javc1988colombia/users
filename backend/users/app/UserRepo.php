@@ -21,4 +21,11 @@ class UserRepo
     {
         return $this->getModel()->create($data);        
     }    
+
+    public function getUserByCountry()
+    {
+        return $this->getModel()->select('country', \DB::raw('count(*) as total'))
+                    ->groupBy('country')
+                    ->pluck('total','country');      
+    }    
 }

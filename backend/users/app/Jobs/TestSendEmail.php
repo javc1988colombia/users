@@ -33,7 +33,6 @@ class TestSendEmail implements ShouldQueue
      */
     public function handle()
     {        
-        print_r('dasd');
         Mail::to('javc2009@gmail.com')->send(new WelcomeEmail($this->data));
     }
 }
