@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use App\UserRepo;
 
 class UserController extends Controller
 {
+    public function getRepo()
+    {
+        return new UserRepo();
+    }   
+
     public function index()
     {
-        return User::all();
+        return $this->getRepo()->index();
     }
 
      /**
@@ -34,9 +40,10 @@ class UserController extends Controller
 
         if($validator->fails())
         {
-            return response()->json(['status' => 'error', 'message' => $validator->errors()], 400);
+            return response()->json(['message' => $validator->errors()], 400);
         }
 
-        User::create($request->all());
+        $this->getRepo()->store($request->all());
+        return response()->json(['message' => "Save successfully"], 200);
     }
 }

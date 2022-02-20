@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Events\UserCreated;
 
 class User extends Model
 {
@@ -17,5 +18,7 @@ class User extends Model
         'category_id'
     ];
 
-    
+    protected $dispatchesEvents = [
+        "created" => UserCreated::class
+    ];
 }
