@@ -42,4 +42,14 @@ export class UserService {
       return of(result as T);
     };
   }
+
+  store(data: any) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+
+    console.log(data);
+    const bodyString = JSON.stringify(data);
+
+    return this.http.post(this.users, bodyString,{headers});
+  }
 }

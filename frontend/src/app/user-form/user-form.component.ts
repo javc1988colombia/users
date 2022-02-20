@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgForm} from '@angular/forms';
+import {UserService} from "../user.service";
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 
 @Component({
   selector: 'app-user-form',
@@ -10,9 +13,12 @@ import {NgForm} from '@angular/forms';
 export class UserFormComponent implements OnInit {
   closeResult = '';
 
-  data: any = {};
+  show: any = false;
 
-  constructor(private modalService:NgbModal) { }
+  @Output() notify?: EventEmitter <boolean> = new EventEmitter <boolean>();
+  @ViewChild('deleteSwal') public readonly deleteSwal!: SwalComponent;
+
+  constructor(private modalService:NgbModal, private userService: UserService) { }
 
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -36,7 +42,17 @@ export class UserFormComponent implements OnInit {
   }
 
   onClickSubmit(data :any) {
-    console.log(data.first_name);
+
+    Swal.fire('Hey there!');
+
+    this.userService.store(data)
+      .subscribe({
+                  next: (res:any) => {
+                      console.log(res);
+
+                  },
+                  error: (e:any) => console.error(e)
+              });
   }
 
 }

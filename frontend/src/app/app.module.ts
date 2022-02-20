@@ -7,8 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserFormComponent } from './user-form/user-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms'  
-import { ReactiveFormsModule} from '@angular/forms' 
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
+import { NgxLoadingModule } from 'ngx-loading'; 
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ReactiveFormsModule} from '@angular/forms'
     BrowserAnimationsModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule 
+    FormsModule,
+    NgxLoadingModule.forRoot({}),
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
