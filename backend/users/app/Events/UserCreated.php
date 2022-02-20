@@ -24,8 +24,8 @@ class UserCreated
      */
     public function __construct($model)
     {
-        Mail::to("javc2009@gmail.com")->send(new WelcomeEmail($model));
-        Mail::to("javc2009@gmail.com")->send(new AdminEmail($model));
+        Mail::to($model->email)->send(new WelcomeEmail($model));
+        Mail::to(env('ADMIN_EMAIL'))->send(new AdminEmail($model));
     }
 
     /**
