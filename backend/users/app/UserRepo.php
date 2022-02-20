@@ -14,7 +14,7 @@ class UserRepo
 
     public function index()
     {
-        return $this->getModel()->all();
+        return $this->getModel()->with('Category')->get();
     }
 
     public function store($data)

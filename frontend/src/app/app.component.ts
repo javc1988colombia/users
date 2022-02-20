@@ -10,7 +10,7 @@ import {Users} from "./users";
 export class AppComponent {
   title = 'frontend';
 
-  users: Users[] = [];
+  users: any[] = [];
 
   constructor(private userService: UserService) {}
 

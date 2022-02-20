@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Events\UserCreated;
+use App\Category;
 
 class User extends Model
 {
@@ -21,4 +22,9 @@ class User extends Model
     protected $dispatchesEvents = [
         "created" => UserCreated::class
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
