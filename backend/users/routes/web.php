@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 Route::resource('categories', 'CategoryController');
 Route::resource('users', 'UserController');
+Route::resource('countries', 'CountryController');
