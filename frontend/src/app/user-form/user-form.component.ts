@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -8,6 +9,8 @@ import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class UserFormComponent implements OnInit {
   closeResult = '';
+
+  data: any = {};
 
   constructor(private modalService:NgbModal) { }
 
@@ -27,9 +30,13 @@ export class UserFormComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
-  }
+  }  
 
   ngOnInit(): void {
+  }
+
+  onClickSubmit(data :any) {
+    console.log(data.first_name);
   }
 
 }

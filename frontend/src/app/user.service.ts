@@ -17,11 +17,11 @@ export class UserService {
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
-  getUsers(): Observable<Users[]> {
-    return this.http.get<Users[]>(this.users)
+  getUsers(): Observable<any> {
+    return this.http.get<any>(this.users)
       .pipe(
         tap(_ => console.log('aa')),
-        catchError(this.handleError<Users[]>('getUsers', []))
+        catchError(this.handleError<any>('getUsers', []))
       );
   }
 
