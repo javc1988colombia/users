@@ -25,4 +25,8 @@ export class AppComponent implements OnInit  {
   getUsers(): void {
     this.userService.getUsers().subscribe(users => this.users = users);
   }
+
+  reload(): void {
+    this.getUsers();
+  }
 }

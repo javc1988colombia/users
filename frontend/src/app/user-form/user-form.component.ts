@@ -16,7 +16,6 @@ export class UserFormComponent implements OnInit {
   show: any = false;
 
   @Output() notify?: EventEmitter <boolean> = new EventEmitter <boolean>();
-  @ViewChild('deleteSwal') public readonly deleteSwal!: SwalComponent;
 
   constructor(private modalService:NgbModal, private userService: UserService) { }
 
@@ -43,16 +42,29 @@ export class UserFormComponent implements OnInit {
 
   onClickSubmit(data :any) {
 
-    Swal.fire('Hey there!');
+    this.show = true;
+
+    Swal.fire('Wait a few seconds');
 
     this.userService.store(data)
-      .subscribe({
-                  next: (res:any) => {
-                      console.log(res);
-
-                  },
-                  error: (e:any) => console.error(e)
-              });
+      .subscribe(
+        (next: any) => {
+            Swal.fire(next.message);
+            this.show = false;
+        },
+        error => {
+          Swal.fire(this.getMessageError(error.error.message));
+          this.show = false;
+        });
   }
 
+  getMessageError(error :any) {
+      var msg = "";
+      for (let key in error) 
+      {
+          var msgLocal = error[key].join(',') + '\n';           
+          msg += msgLocal;
+      }
+      return msg;
+  }
 }

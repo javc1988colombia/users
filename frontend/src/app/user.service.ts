@@ -47,7 +47,6 @@ export class UserService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
 
-    console.log(data);
     const bodyString = JSON.stringify(data);
 
     return this.http.post(this.users, bodyString,{headers});
